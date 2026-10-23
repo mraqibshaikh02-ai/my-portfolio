@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080b12" />
+  <meta name="description" content="Aqib Shaikh — Full-stack developer building modern web experiences, applications, and digital products." />
+  <title>Aqib Shaikh — Full-Stack Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+        colors: { ink: '#080b12', panel: '#0e1420', electric: '#a3ff6f', violet: '#8b7bff' },
+        boxShadow: { glow: '0 0 55px rgba(163,255,111,.12)' }
+      }}
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { background:#080b12; color:#f5f7fb; overflow-x:hidden; }
+    ::selection { background:#a3ff6f; color:#080b12; }
+    .mono { font-family:'DM Mono', monospace; }
+    .grid-bg { background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size:54px 54px; mask-image:linear-gradient(to bottom,black,transparent 90%); }
+    .glass { background:rgba(15,21,33,.72); border:1px solid rgba(255,255,255,.09); backdrop-filter:blur(18px); }
+    .text-gradient { background:linear-gradient(100deg,#fff 10%,#a3ff6f 65%,#8b7bff 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .outline-text { -webkit-text-stroke:1px rgba(255,255,255,.32); color:transparent; }
+    .project-card { transition:transform .35s ease,border-color .35s ease,background .35s ease; }
+    .project-card:hover { transform:translateY(-7px); border-color:rgba(163,255,111,.4); background:#111a27; }
+    .skill-pill { transition:all .25s ease; }
+    .skill-pill:hover { color:#a3ff6f; border-color:rgba(163,255,111,.55); transform:translateY(-2px); }
+    .cursor-dot { width:6px;height:6px;border-radius:50%;background:#a3ff6f;box-shadow:0 0 18px #a3ff6f; }
+    .marquee-track { animation:marquee 26s linear infinite; }
+    @keyframes marquee { to { transform:translateX(-50%); } }
+    .float { animation:float 5s ease-in-out infinite; }
+    @keyframes float { 0%,100% { transform:translateY(0) } 50% { transform:translateY(-12px) } }
+    .reveal { opacity:0; transform:translateY(28px); }
+    .nav-link { position:relative; }
+    .nav-link:after { content:''; position:absolute; left:0; bottom:-7px; height:1px; width:0; background:#a3ff6f; transition:width .25s; }
+    .nav-link:hover:after { width:100%; }
+    .scanline { background:linear-gradient(transparent,rgba(163,255,111,.055),transparent); height:120px; position:absolute; left:0; right:0; animation:scan 7s linear infinite; pointer-events:none; }
+    @keyframes scan { from { top:-130px } to { top:100% } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } .reveal { opacity:1; transform:none; } }
+  </style>
+</head>
+<body class="font-sans antialiased">
+  <div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-48 right-[-10%] h-[520px] w-[520px] rounded-full bg-violet/10 blur-[120px]"></div>
+    <div class="absolute top-[45%] left-[-15%] h-[420px] w-[420px] rounded-full bg-electric/5 blur-[130px]"></div>
+  </div>
+
+  <header class="fixed top-0 z-50 w-full border-b border-white/[.07] bg-ink/75 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Main navigation">
+      <a href="#home" class="flex items-center gap-3" aria-label="Aqib Shaikh home">
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-electric text-sm font-black text-ink">A.</span>
+        <span class="font-bold tracking-tight">aqib<span class="text-electric">shaikh</span><span class="text-slate-500">.dev</span></span>
+      </a>
+      <div class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
+        <a class="nav-link hover:text-white" href="#about">About</a><a class="nav-link hover:text-white" href="#stack">Tech stack</a><a class="nav-link hover:text-white" href="#work">Projects</a><a class="nav-link hover:text-white" href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="hidden rounded-full border border-electric/50 px-5 py-2.5 text-sm font-semibold text-electric transition hover:bg-electric hover:text-ink sm:inline-flex">Let’s talk <span class="ml-2">↗</span></a>
+      <button id="menuBtn" class="rounded-lg border border-white/10 px-3 py-2 text-sm md:hidden" aria-label="Toggle navigation menu" aria-expanded="false">Menu</button>
+    </nav>
+    <div id="mobileMenu" class="hidden border-t border-white/10 bg-ink px-5 py-4 md:hidden">
+      <div class="flex flex-col gap-4 text-sm text-slate-300"><a href="#about">About</a><a href="#stack">Tech stack</a><a href="#work">Projects</a><a href="#contact">Contact</a></div>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <section id="home" class="relative mx-auto flex min-h-screen max-w-7xl items-center px-5 pb-16 pt-32 lg:px-8">
+      <div class="scanline opacity-40"></div>
+      <div class="grid w-full items-center gap-14 lg:grid-cols-[1.15fr_.85fr]">
+        <div class="hero-copy relative z-10">
+          <div class="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.03] px-4 py-2 text-xs text-slate-300">
+            <span class="relative flex h-2 w-2"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-electric opacity-60"></span><span class="relative inline-flex h-2 w-2 rounded-full bg-electric"></span></span>
+            OPEN TO PROJECTS & COLLABORATIONS
+          </div>
+          <p class="mono mb-5 text-xs uppercase tracking-[.28em] text-electric">Full-stack developer · Larkana, Pakistan</p>
+          <h1 class="max-w-4xl text-5xl font-extrabold leading-[.98] tracking-[-.055em] sm:text-7xl xl:text-[88px]">I build digital<br><span class="text-gradient">things that</span><br><span class="outline-text">move people.</span></h1>
+          <p class="mt-8 max-w-xl text-base leading-8 text-slate-400 sm:text-lg">Hey, I’m Aqib Shaikh — a developer who turns ideas into clean, useful web experiences. From responsive interfaces to database-powered applications, I love making technology work beautifully.</p>
+          <div class="mt-9 flex flex-wrap items-center gap-4">
+            <a href="#work" class="group inline-flex items-center rounded-full bg-electric px-6 py-3.5 text-sm font-bold text-ink transition hover:shadow-glow">Explore my work <span class="ml-3 transition group-hover:translate-x-1">↗</span></a>
+            <a href="#contact" class="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/40">Get in touch <span>→</span></a>
+          </div>
+          <div class="mt-12 flex flex-wrap gap-x-8 gap-y-4 border-t border-white/10 pt-6 text-sm text-slate-400">
+            <span><span class="text-white">01.</span> Build with purpose</span><span><span class="text-white">02.</span> Learn every day</span><span><span class="text-white">03.</span> Ship with care</span>
+          </div>
+        </div>
+        <div class="hero-visual relative mx-auto w-full max-w-[470px]">
+          <div class="absolute inset-8 rounded-full bg-electric/10 blur-3xl"></div>
+          <div class="float relative mx-auto aspect-[.82] max-w-[400px] overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-[#1c2635] via-[#111723] to-[#0a0d14]">
+            <div class="absolute inset-0 opacity-60" style="background:radial-gradient(circle at 50% 30%,rgba(163,255,111,.15),transparent 35%),linear-gradient(135deg,transparent 40%,rgba(139,123,255,.08));"></div>
+            <div class="absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-2 text-[10px] text-slate-300 backdrop-blur"><span class="cursor-dot"></span> AVAILABLE FOR WORK</div>
+            <img src="assets/aqib.png" alt="Portrait of Aqib Shaikh wearing a black suit" class="absolute bottom-0 left-1/2 z-10 h-[92%] w-full -translate-x-1/2 object-contain object-bottom" />
+            <div class="absolute bottom-0 left-0 right-0 z-20 h-28 bg-gradient-to-t from-[#0b0f17] to-transparent"></div>
+            <div class="absolute bottom-5 left-5 z-30"><p class="text-xl font-bold">Aqib Shaikh</p><p class="mono mt-1 text-xs text-electric">Developer / Problem solver</p></div>
+            <div class="absolute bottom-6 right-5 z-30 text-3xl text-white/20">✳</div>
+          </div>
+          <div class="glass absolute -left-4 top-[35%] rounded-2xl p-4 shadow-2xl sm:-left-12"><p class="mono text-[10px] text-slate-500">CURRENT FOCUS</p><p class="mt-1 text-sm font-semibold">Web + Software</p><div class="mt-3 flex gap-1"><span class="h-1.5 w-8 rounded-full bg-electric"></span><span class="h-1.5 w-5 rounded-full bg-electric/50"></span><span class="h-1.5 w-3 rounded-full bg-white/10"></span></div></div>
+          <div class="glass absolute -right-2 bottom-[22%] rounded-2xl p-3.5 sm:-right-8"><p class="mono text-[10px] text-slate-500">CODE MODE</p><p class="mt-1 text-sm font-semibold"><span class="text-electric">&lt;/&gt;</span> Always building</p></div>
+          <div class="absolute -right-1 top-8 h-16 w-16 rounded-full border border-electric/20 sm:-right-4"><div class="absolute inset-2 rounded-full border border-dashed border-electric/40"></div></div>
+        </div>
+      </div>
+      <a href="#about" class="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-3 text-[10px] uppercase tracking-[.25em] text-slate-500 md:flex"><span class="h-8 w-px bg-gradient-to-b from-electric to-transparent"></span> Scroll to explore</a>
+    </section>
+
+    <section id="about" class="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+      <div class="reveal grid gap-12 lg:grid-cols-[.65fr_1.35fr]">
+        <div><p class="mono text-xs uppercase tracking-[.25em] text-electric">01 / A little about me</p><h2 class="mt-5 text-4xl font-bold tracking-tight sm:text-5xl">Curiosity in.<br><span class="text-slate-500">Solutions out.</span></h2></div>
+        <div><p class="max-w-3xl text-xl leading-9 text-slate-300 sm:text-2xl">I enjoy connecting thoughtful design with reliable code — creating products that feel intuitive on the front end and stay organised behind the scenes.</p><p class="mt-6 max-w-2xl leading-8 text-slate-400">My learning journey spans front-end development, server-side logic, and relational databases. I’ve built practical projects that help me strengthen my problem-solving skills, and I’m continuously expanding my toolkit through hands-on development.</p>
+          <div class="mt-8 grid gap-4 sm:grid-cols-3"><div class="rounded-2xl border border-white/10 bg-white/[.025] p-5"><p class="mono text-xs text-slate-500">MINDSET</p><p class="mt-3 font-semibold">Keep learning</p></div><div class="rounded-2xl border border-white/10 bg-white/[.025] p-5"><p class="mono text-xs text-slate-500">APPROACH</p><p class="mt-3 font-semibold">Build to solve</p></div><div class="rounded-2xl border border-white/10 bg-white/[.025] p-5"><p class="mono text-xs text-slate-500">PRIORITY</p><p class="mt-3 font-semibold">User experience</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="border-y border-white/[.07] bg-white/[.015] py-24 lg:py-28">
+      <div class="mx-auto max-w-7xl px-5 lg:px-8">
+        <div class="reveal mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="mono text-xs uppercase tracking-[.25em] text-electric">02 / My toolkit</p><h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Tools I work with.</h2></div><p class="max-w-md text-sm leading-7 text-slate-400">A growing toolkit across modern interfaces, server-side development, and data management.</p></div>
+        <div class="reveal grid gap-4 md:grid-cols-3">
+          <div class="rounded-3xl border border-white/10 bg-panel/80 p-6 sm:p-7"><div class="flex items-center justify-between"><span class="mono text-xs text-electric">01 — FRONT END</span><span class="text-2xl text-slate-500">◈</span></div><h3 class="mt-6 text-xl font-bold">Interfaces & experience</h3><div class="mt-5 flex flex-wrap gap-2"><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">HTML</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">CSS</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">JavaScript</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">Tailwind CSS</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">Bootstrap</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">React.js</span></div></div>
+          <div class="rounded-3xl border border-white/10 bg-panel/80 p-6 sm:p-7"><div class="flex items-center justify-between"><span class="mono text-xs text-electric">02 — BACK END</span><span class="text-2xl text-slate-500">⌘</span></div><h3 class="mt-6 text-xl font-bold">Logic & applications</h3><div class="mt-5 flex flex-wrap gap-2"><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">PHP</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">C#</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">ASP.NET</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">CRUD</span></div></div>
+          <div class="rounded-3xl border border-white/10 bg-panel/80 p-6 sm:p-7"><div class="flex items-center justify-between"><span class="mono text-xs text-electric">03 — DATA</span><span class="text-2xl text-slate-500">⌁</span></div><h3 class="mt-6 text-xl font-bold">Data & persistence</h3><div class="mt-5 flex flex-wrap gap-2"><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">MySQL</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">SQL Server</span><span class="skill-pill rounded-full border border-white/10 px-3 py-2 text-sm text-slate-300">Database design</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+      <div class="reveal mb-12 flex flex-col justify-between gap-5 sm:flex-row sm:items-end"><div><p class="mono text-xs uppercase tracking-[.25em] text-electric">03 / Selected work</p><h2 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Projects with purpose.</h2></div><span class="mono text-xs text-slate-500">PRACTICE → PROGRESS → PRODUCT</span></div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        <article class="project-card reveal overflow-hidden rounded-3xl border border-white/10 bg-panel/70">
+          <div class="relative flex h-64 items-center justify-center overflow-hidden bg-[#111b24] p-7"><div class="absolute inset-0 opacity-50" style="background-image:linear-gradient(rgba(163,255,111,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(163,255,111,.07) 1px,transparent 1px);background-size:24px 24px"></div><div class="relative w-full max-w-sm rotate-[-2deg] rounded-xl border border-white/10 bg-[#0a1018] p-5 shadow-2xl"><div class="flex items-center gap-1.5"><i class="h-2 w-2 rounded-full bg-red-400"></i><i class="h-2 w-2 rounded-full bg-yellow-300"></i><i class="h-2 w-2 rounded-full bg-electric"></i><span class="mono ml-3 text-[10px] text-slate-500">vehicle_dashboard.php</span></div><div class="mt-5 grid grid-cols-3 gap-2"><div class="rounded-lg bg-white/[.04] p-3"><div class="h-1.5 w-8 rounded bg-electric/70"></div><div class="mt-3 h-4 w-12 rounded bg-white/20"></div></div><div class="rounded-lg bg-white/[.04] p-3"><div class="h-1.5 w-8 rounded bg-violet/70"></div><div class="mt-3 h-4 w-8 rounded bg-white/20"></div></div><div class="rounded-lg bg-white/[.04] p-3"><div class="h-1.5 w-8 rounded bg-sky-300/70"></div><div class="mt-3 h-4 w-10 rounded bg-white/20"></div></div></div><div class="mt-3 space-y-2"><div class="h-2 rounded bg-white/10"></div><div class="h-2 w-4/5 rounded bg-white/10"></div><div class="h-2 w-3/5 rounded bg-white/10"></div></div></div><span class="mono absolute bottom-4 right-5 text-[10px] text-electric">PHP / MYSQL</span></div>
+          <div class="p-7 sm:p-8"><div class="flex items-center justify-between"><span class="mono text-xs text-electric">PROJECT 01</span><span class="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400">Web application</span></div><h3 class="mt-4 text-2xl font-bold">Vehicle Management System</h3><p class="mt-3 leading-7 text-slate-400">A database-driven system built to organise vehicle records and manage information through core create, read, update, and delete operations.</p><div class="mt-5 flex flex-wrap gap-2 text-xs text-slate-400"><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">PHP</span><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">MySQL</span><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">CRUD</span></div></div>
+        </article>
+        <article class="project-card reveal overflow-hidden rounded-3xl border border-white/10 bg-panel/70">
+          <div class="relative flex h-64 items-center justify-center overflow-hidden bg-[#151326] p-7"><div class="absolute -right-10 -top-20 h-64 w-64 rounded-full bg-violet/15 blur-3xl"></div><div class="relative w-full max-w-sm rounded-xl border border-white/10 bg-[#100f1b] p-5 shadow-2xl"><div class="flex items-center justify-between"><span class="mono text-[10px] text-slate-500">MEDICARE / HEALTH PORTAL</span><span class="h-2 w-2 rounded-full bg-electric"></span></div><div class="mt-5 flex gap-3"><div class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet/20 text-2xl text-violet-300">✚</div><div><div class="h-3 w-28 rounded bg-white/80"></div><div class="mt-2 h-2 w-20 rounded bg-white/20"></div></div></div><div class="mt-5 grid grid-cols-2 gap-3"><div class="rounded-xl border border-white/10 p-3"><div class="h-2 w-12 rounded bg-violet/70"></div><div class="mt-3 h-3 w-20 rounded bg-white/30"></div><div class="mt-2 h-2 w-14 rounded bg-white/10"></div></div><div class="rounded-xl border border-white/10 p-3"><div class="h-2 w-12 rounded bg-electric/70"></div><div class="mt-3 h-3 w-16 rounded bg-white/30"></div><div class="mt-2 h-2 w-12 rounded bg-white/10"></div></div></div><div class="mt-3 h-8 rounded-lg bg-violet/20"></div></div><span class="mono absolute bottom-4 right-5 text-[10px] text-violet-300">HTML / CSS / JS</span></div>
+          <div class="p-7 sm:p-8"><div class="flex items-center justify-between"><span class="mono text-xs text-electric">PROJECT 02</span><span class="rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400">Front-end project</span></div><h3 class="mt-4 text-2xl font-bold">Medicare — Health & Medical</h3><p class="mt-3 leading-7 text-slate-400">A health-focused website concept designed to present medical information in a clear, approachable, and responsive interface.</p><div class="mt-5 flex flex-wrap gap-2 text-xs text-slate-400"><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">HTML</span><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">CSS</span><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">Bootstrap</span><span class="rounded-md bg-white/[.06] px-2.5 py-1.5">JavaScript</span></div></div>
+        </article>
+      </div>
+      <p class="reveal mt-5 text-sm text-slate-500">Project previews are illustrative UI mockups. Add your live demo and GitHub links when they’re ready.</p>
+    </section>
+
+    <section class="overflow-hidden border-y border-white/[.07] py-7">
+      <div class="marquee-track flex w-max gap-10 whitespace-nowrap text-sm font-semibold uppercase tracking-[.2em] text-slate-500"><span>Design with intent ✳ Build with care ✳ Learn relentlessly ✳</span><span>Design with intent ✳ Build with care ✳ Learn relentlessly ✳</span><span>Design with intent ✳ Build with care ✳ Learn relentlessly ✳</span><span>Design with intent ✳ Build with care ✳ Learn relentlessly ✳</span></div>
+    </section>
+
+    <section id="contact" class="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+      <div class="reveal relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#0d1420] p-7 sm:p-12 lg:p-16">
+        <div class="absolute -right-20 -top-24 h-80 w-80 rounded-full bg-electric/10 blur-[100px]"></div>
+        <div class="relative grid gap-12 lg:grid-cols-[1.2fr_.8fr] lg:items-end">
+          <div><p class="mono text-xs uppercase tracking-[.25em] text-electric">04 / Your idea starts here</p><h2 class="mt-5 max-w-3xl text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl">Have a project<br>in mind? <span class="text-gradient">Let’s build it.</span></h2><p class="mt-6 max-w-xl leading-8 text-slate-400">Need a website, web application, or help bringing a digital idea to life? Send me a message and tell me what you’re working on.</p><a href="https://wa.me/923308540107" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center rounded-full bg-electric px-6 py-3.5 font-bold text-ink transition hover:shadow-glow">Start a conversation <span class="ml-3">↗</span></a></div>
+          <div class="space-y-4">
+            <a href="mailto:mraqibshaikh02@gmail.com" class="group flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:border-electric/40"><div><p class="mono text-[10px] text-slate-500">EMAIL</p><p class="mt-2 break-all text-sm font-medium sm:text-base">mraqibshaikh02@gmail.com</p></div><span class="text-xl text-electric transition group-hover:translate-x-1">↗</span></a>
+            <a href="https://www.instagram.com/mraqibshykh?psln=MXV6MWc3eWJ0bGVrdg==" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:border-electric/40"><div><p class="mono text-[10px] text-slate-500">INSTAGRAM</p><p class="mt-2 text-base font-medium">@mraqibshykh</p></div><span class="text-xl text-electric transition group-hover:translate-x-1">↗</span></a>
+            <a href="https://www.linkedin.com/in/aqib-shaikh-8806763a1" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:border-electric/40"><div><p class="mono text-[10px] text-slate-500">LINKEDIN</p><p class="mt-2 text-base font-medium">Aqib Shaikh</p></div><span class="text-xl text-electric transition group-hover:translate-x-1">↗</span></a>
+            <div class="rounded-2xl border border-white/10 p-5"><p class="mono text-[10px] text-slate-500">BASED IN</p><p class="mt-2 text-sm text-slate-300">Old Trank Chowk, Hamal Muhalla, Larkana, Pakistan</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative z-10 border-t border-white/[.07] px-5 py-7 lg:px-8">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-xs text-slate-500 sm:flex-row sm:items-center"><a href="#home" class="font-semibold text-slate-300">Aqib Shaikh <span class="text-electric">©</span> <span id="year"></span></a><p>Designed with intention. Built with curiosity.</p><a href="#home" class="transition hover:text-electric">Back to top ↑</a></div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+      menuBtn.textContent = isOpen ? 'Menu' : 'Close';
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false'); menuBtn.textContent = 'Menu';
+    }));
+
+    if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.from('.hero-copy > *', { y: 24, opacity: 0, duration: .85, stagger: .12, ease: 'power3.out', delay: .15 });
+      gsap.from('.hero-visual', { x: 40, opacity: 0, duration: 1.1, ease: 'power3.out', delay: .35 });
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        gsap.to(el, { opacity: 1, y: 0, duration: .9, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 86%', toggleActions: 'play none none reverse' }
+        });
+      });
+      gsap.utils.toArray('.project-card').forEach((card, i) => {
+        gsap.from(card, { y: 35, opacity: 0, duration: .8, delay: i * .1, ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 88%' } });
+      });
+      gsap.to('.scanline', { opacity: .15, scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: true } });
+    } else {
+      document.querySelectorAll('.reveal').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    }
+  </script>
+</body>
+</html>
